@@ -15,7 +15,7 @@ if( isset($_REQUEST["operacio"]) && hiha_sessio() )
 {
 	$operacio=$_REQUEST["operacio"];
 	
-	if($operacio=="op_alta_usuari" && isset($_REQUEST["nomcognoms"]) && isset($_REQUEST["nick"]) && isset($_REQUEST["contrasenya"]) && isset($_REQUEST["nivell"]) )
+	if($operacio=="op_alta_usuari" && isset($_REQUEST["nomcognoms"]) && isset($_REQUEST["nick"]) && isset($_REQUEST["contrasenya"]) )
 	{ 
 		// crear nou usuari
 		$nomcognoms = $_REQUEST["nomcognoms"];

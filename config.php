@@ -2,14 +2,15 @@
 // CMS FP
 // globals amb les dades de la BBDD
 
-/*	global $CFG;
+/*	utilitzant variable global PHP 4.0<
+	global $CFG;
 	
 	$CFG->dirroot="f:\\xampp\\htdocs\\c5\\_portalcss";
 	$CFG->wwwroot="http://localhost/c5/_portalcss/";
 	$CFG->dbhost="localhost";
 	$CFG->dbname="portal";
 	$CFG->dbuser="root";
-	$CFG->dbpass="";
+	$CFG->dbpass="root";
 */
 
 	class cCFG {

@@ -9,7 +9,8 @@ include "config.php";
 function connectar_bd()
 {
 	global $CFG;
-	
+	$conn=mysqli_connect($CFG->dbhost,$CFG->dbuser,$CFG->dbpass);
+	return $conn;
 }
 
 
@@ -43,6 +44,10 @@ function tancar_sessio()
 
 function llistarusuaris()
 {
+	global $CFG;
+	$conn=mysqli_connect($CFG->dbhost,$CFG->dbuser,$CFG->dbpass);
+	// resta de query
+	
 	//afegir codi per llistar usuaris
 	echo '<a href="index.php?operacio=form_alta_usuari">Afegeix un usuari</a> | <a href="index.php">Tornar a l\'&agrave;rea principal</a><br><br>';
 	echo '<h2>Llistat usuaris del portal: </h2>';
@@ -86,29 +91,22 @@ function eliminarusuari($nick)
 function formularimodificarusuari($nick)
 {
 	//afegir codi per modificar usuaris
-?>		
-		<h2>Modificar usuari</h2>
-
-		<form name="form1" method="POST" action="index.php">
-
-		<table bgcolor="#C0D5BD" cellpadding="5" cellspacing="2" border="1">
-		
-		<tr><td> Nom i cognoms :</td> <td><input name="nomcognoms" type="text" value="<?php echo 'nomcognoms'; ?>"></td></tr>
-		<tr><td> Edat :</td> <td> <input name="edat" type="text" value="<?php echo 'edat'; ?>"></td></tr> 
-		<tr><td> Correu electr&oacute;nic :</td> <td> <input name="mail" type="text" value="<?php echo 'mail'; ?>"></td></tr> 
-		<tr><td> Usuari d'acc&egrave;s:</td> <td><?php echo 'nick'; ?></td></tr> 
+	echo '<h2>Modificar usuari</h2>
+	<form name="form1" method="POST" action="index.php">
+	<table bgcolor="#C0D5BD" cellpadding="5" cellspacing="2" border="1">
+		<tr><td> Nom i cognoms :</td> <td><input name="nomcognoms" type="text" value="nomcognoms"></td></tr>
+		<tr><td> Edat :</td> <td> <input name="edat" type="text" value="edat"></td></tr> 
+		<tr><td> Correu electr&oacute;nic :</td> <td> <input name="mail" type="text" value="mail"></td></tr> 
+		<tr><td> Usuari acc&eacute;s:</td><td>nick</td></tr> 
 		<tr><td> Contrasenya :</td> <td> <input name="contrasenya" type="password"></td></tr> 
-		<tr><td> Nivell :</td> <td> <input name="nivell" type="text" value="<?php echo 'nivell'; ?>"></td></tr> 
+		<tr><td> Nivell :</td> <td> <input name="nivell" type="text" value="nivell"></td></tr> 
 		<tr><td colspan="2" align="center"><input type="submit" value="Modificar"></td></tr>
-		
-		</table>
-
-		<input name="nick" type="hidden" value="<?php echo 'nick'; ?>"> 
-		<input name="operacio" type="hidden" value="op_modificar_usuari">
-		</form>
-
-		<p><a href='index.php?operacio=llistar_usuaris'>Tornar &agrave;rea gesti&oacute;</a>
-<?php
+	</table>
+	<input name="nick" type="hidden" value="nick"> 
+	<input name="operacio" type="hidden" value="op_modificar_usuari">
+	</form>
+	<p><a href="index.php?operacio=llistar_usuaris">Tornar &agrave;rea gesti&oacute;</a>
+	<p><a href="index.php">Plana principal</a>';
 }
 
 
@@ -127,19 +125,18 @@ function modificarusuari($nick, $nomcognoms, $edat, $mail, $pwd, $nivell)
 function formulariperfilusuari($nick)
 {
 	//afegir codi per crear formulari per editar perfil usuaris
-
-	echo '<h2>Modificar usuari</h2>
+	echo '<h2>Modificar perfil</h2>
 	<form name="form1" method="POST" action="index.php">
-	<table bgcolor="#C0D5BD" cellpadding="5" cellspacing="2" border="1">
-	<tr><td> Nom i cognoms :</td> <td><input name="nomcognoms" type="text" value="nomcognoms"></td></tr>
-	<tr><td> Edat :</td> <td> <input name="edat" type="text" value="edat"></td></tr> 
-	<tr><td> Correu electr&oacute;nic :</td> <td> <input name="mail" type="text" value="mail"></td></tr> 
-	<tr><td> Usuari acc&eacute;s:</td><td>nick</td></tr> 
-	<tr><td> Contrasenya :</td> <td> <input name="contrasenya" type="password"></td></tr> 
-	<tr><td colspan="2" align="center"><input type="submit" value="Modificar"></td></tr>
-	</table>
-	<input name="nick" type="hidden" value="nick"> 
-	<input name="operacio" type="hidden" value="op_modificar_perfil">
+		<table bgcolor="#C0D5BD" cellpadding="5" cellspacing="2" border="1">
+			<tr><td> Nom i cognoms :</td> <td><input name="nomcognoms" type="text" value="nomcognoms"></td></tr>
+			<tr><td> Edat :</td> <td> <input name="edat" type="text" value="edat"></td></tr> 
+			<tr><td> Correu electr&oacute;nic :</td> <td> <input name="mail" type="text" value="mail"></td></tr> 
+			<tr><td> Usuari acc&eacute;s:</td><td>nick</td></tr> 
+			<tr><td> Contrasenya :</td> <td> <input name="contrasenya" type="password"></td></tr> 
+			<tr><td colspan="2" align="center"><input type="submit" value="Modificar"></td></tr>
+		</table>
+		<input name="nick" type="hidden" value="nick"> 
+		<input name="operacio" type="hidden" value="op_modificar_perfil">
 	</form>
 	<p><a href="index.php">Tornar</a>';
 }
